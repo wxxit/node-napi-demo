@@ -19,5 +19,6 @@ Napi::Object HelloWorldRobot::Init(Napi::Env env, Napi::Object exports) {
 
 void HelloWorldRobot::Say(const Napi::CallbackInfo& info) {
   Napi::Function cb = info[0].As<Napi::Function>();
-  cb.Call(info.Env().Global(), {Napi::String::New(info.Env(), "hello world")});
+  while (say_count_--)
+    cb.Call(info.Env().Global(), {Napi::String::New(info.Env(), "hello world")});
 }
